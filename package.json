@@ -1,0 +1,31 @@
+{
+  "name": "backend-with-nodejs-expressjs",
+  "version": "1.0.0",
+  "description": "Ejemplo de backend con NodeJS y ExpressJS",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zutjmx/backend-with-nodejs-expressjs.git"
+  },
+  "keywords": [
+    "nodejs",
+    "expressjs",
+    "backend",
+    "api"
+  ],
+  "author": "zutjmx@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zutjmx/backend-with-nodejs-expressjs/issues"
+  },
+  "homepage": "https://github.com/zutjmx/backend-with-nodejs-expressjs#readme",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "mongoose": "^8.20.0"
+  }
+}
