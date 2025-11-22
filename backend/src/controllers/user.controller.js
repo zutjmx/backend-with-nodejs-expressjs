@@ -47,4 +47,27 @@ const createUser = async (req, res) => {
     }
 };
 
+const loginUser = async (req, res) => {
+    // Lógica para iniciar sesión de usuario
+    try {
+        // Validar si existe el usuario y la contraseña
+        const { email, password } = req.body;
+
+        // Buscar el usuario por correo electrónico
+        const user = await User.findOne({ email: email.toLowerCase() });
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        // Comparar la contraseña proporcionada con la almacenada
+        const isMatch = await user.comparePassword(password);
+        if (!isMatch) {
+            return res.status(401).json({ message: "Contraseña incorrecta" });
+        }
+
+    } catch (error) {
+        
+    }
+};
+
 export { createUser };
