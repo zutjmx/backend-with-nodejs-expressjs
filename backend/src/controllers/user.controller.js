@@ -65,9 +65,29 @@ const loginUser = async (req, res) => {
             return res.status(401).json({ message: "Contraseña incorrecta" });
         }
 
+        res.status(200).json(
+            { 
+                message: "Inicio de sesión exitoso",
+                user: { 
+                    id: user._id, 
+                    username: user.username, 
+                    email: user.email
+                } 
+            }
+        );
+
     } catch (error) {
-        
+        res.status(500).json({ message: error.message });
     }
 };
 
-export { createUser };
+const listarUsuarios = async (req, res) => {
+    const usuarios = await User.find();
+    res.status(200).json(usuarios);
+}
+
+export { 
+    createUser, 
+    loginUser,
+    listarUsuarios 
+};
