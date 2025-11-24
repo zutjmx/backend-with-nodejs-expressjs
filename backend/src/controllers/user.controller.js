@@ -83,7 +83,14 @@ const loginUser = async (req, res) => {
 
 const listarUsuarios = async (req, res) => {
     const usuarios = await User.find();
-    res.status(200).json(usuarios);
+    let usuariosSinPassword = usuarios.map(user => {
+        return {
+            id: user._id,
+            username: user.username,
+            email: user.email
+        };
+    });
+    res.status(200).json(usuariosSinPassword);
 }
 
 export { 
