@@ -81,20 +81,42 @@ const loginUser = async (req, res) => {
     }
 };
 
+const logoutUser = async (req, res) => {
+    // Lógica para cerrar sesión de usuario
+    try {
+        const { email } = req.body;
+        const user = await User.findOne({ email: email.toLowerCase() });
+        
+        if (!user) {
+            return res.status(404).json({ message: "Usuario no encontrado" });
+        }
+
+        res.status(200).json({ message: "Cierre de sesión exitoso" });
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+}
+
 const listarUsuarios = async (req, res) => {
-    const usuarios = await User.find();
-    let usuariosSinPassword = usuarios.map(user => {
-        return {
-            id: user._id,
-            username: user.username,
-            email: user.email
-        };
-    });
-    res.status(200).json(usuariosSinPassword);
+    try {
+        const usuarios = await User.find();
+        let usuariosSinPassword = usuarios.map(user => {
+            return {
+                id: user._id,
+                username: user.username,
+                email: user.email
+            };
+        });
+        res.status(200).json(usuariosSinPassword);
+    } catch (error) {
+        res.status(500).json({ message: error.message });
+    }
+    
 }
 
 export { 
     createUser, 
     loginUser,
+    logoutUser,
     listarUsuarios 
 };
